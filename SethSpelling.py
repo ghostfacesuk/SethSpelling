@@ -40,12 +40,24 @@ answerEight = str("eight")
 answerNine = str("nine")
 answerTen = str("ten")
 
+audioOne = str("C:\Audio\hello.mp3")
+audioTwo = str("C:\Audio\hello.mp3")
+audioThree = str("C:\Audio\hello.mp3")
+audioFour = str("C:\Audio\hello.mp3")
+audioFive = str("C:\Audio\hello.mp3")
+audioSix = str("C:\Audio\hello.mp3")
+audioSeven = str("C:\Audio\hello.mp3")
+audioEight = str("C:\Audio\hello.mp3")
+audioNine = str("C:\Audio\hello.mp3")
+audioTen = str("C:\Audio\hello.mp3")
+
+audio = audioOne
 wordNumber = str("\nFirst word")
 
 def play_1():
-    print(f"{wordNumber}")
+    print(wordNumber)
     mixer.init()
-    mixer.music.load("C:\Audio\hello.mp3")
+    mixer.music.load(audio)
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
