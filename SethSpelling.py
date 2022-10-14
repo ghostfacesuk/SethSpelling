@@ -1,6 +1,6 @@
 # version 1.0.0
 # -*- coding: utf-8 -*-
-
+import os
 from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
@@ -10,10 +10,11 @@ import pygame  # it is important to import pygame after that
 import time
 from pygame import mixer
 
-
+def clear_console():
+    os.system('cls')
 
 pound = u'\u00A3'
-
+clear_console()
 print("Seth's spelling test v1.0.0")
 
 print("   _____      _   _     _        _____            _ _ _               _______        _   ")
@@ -27,75 +28,59 @@ print("                                      |_|                     |___/      
 
 rightAnswers = 0
 wrongAnswers = 0
+i = 0
 
-# put the selling items below!
-answerOne = str("hello")
-answerTwo = str("two")
-answerThree = str("three")
-answerFour = str("four")
-answerFive = str("five")
-answerSix = str("six")
-answerSeven = str("seven")
-answerEight = str("eight")
-answerNine = str("nine")
-answerTen = str("ten")
-
-audioOne = str(f"C:\Audio\{answerOne}.mp3")
-audioTwo = str(f"C:\Audio\{answerTwo}.mp3")
-audioThree = str(f"C:\Audio\{answerThree}.mp3")
-audioFour = str(f"C:\Audio\{answerFour}.mp3")
-audioFive = str(f"C:\Audio\{answerFive}.mp3")
-audioSix = str(f"C:\Audio\{answerSix}.mp3")
-audioSeven = str(f"C:\Audio\{answerSeven}.mp3")
-audioEight = str(f"C:\Audio\{answerEight}.mp3")
-audioNine = str(f"C:\Audio\{answerNine}.mp3")
-audioTen = str(f"C:\Audio\{answerTen}.mp3")
-
-audio = audioOne
-wordNumber = str("\nFirst word")
+# put the selling answerList below!
+answerList = ["one","two","three","four","five","six","seven","eight","nine","ten"]
+wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"]
 
 def play_1():
-    print(wordNumber)
+    clear_console()
+    print(f"The {wordList[i]} word is...")
     mixer.init()
-    mixer.music.load(audio)
+    mixer.music.load(f"C:\Audio\{answerList[i]}.mp3")
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
-
 
 def repeatWord():
     repNum = 1
     while repNum >= 1:
         hearAgain = input("\nWould you like to hear it again?\n")
         if hearAgain == str("yes"):
-            repNum = 1
             play_1()
         else:
             repNum = 0
             print("\n")
 
+#### Questions ####
+def questions():
+    global i, wordList, rightAnswers, wrongAnswers
+    while i < 10:
+        startSpell = input(f"\nPress any key for the {wordList[i]} word...\n")
+        if startSpell == str("exit"):
+            exit()
+        else:
+            play_1()
+            repeatWord()
+        clear_console()
+        wordGuess = input(f"Spell the {wordList[i]} word...\n")
+        if wordGuess == answerList[i]:
+            print("\nCorrect, well done!")
+            rightAnswers += 1
+            i += 1
+        else:
+            print(f'\nIncorrect! You put "{wordGuess}", the answer is "{answerList[i]}".')
+            wrongAnswers += 1
+            i += 1
 
+questions()
+#### Questions ####
 
-startSpell = input("\nPress any key for the first word...\n")
-if startSpell == str("exit"):
-    exit()
-else:
-    wordNumber = str("\nFirst word")
-    play_1()
-    repeatWord()
-
-
-    
-wordOne = input("Spell the first word...\n")
-if wordOne == answerOne:
-    print("\nCorrect, well done!")
-    rightAnswers += 1
-else:
-    print(f'\nIncorrect! You put "{wordOne}", the answer is "{answerOne}".')
-    wrongAnswers += 1
 
 # End of test
 if wrongAnswers == 0:
-    print("\nWell done! Here is your vbucks code XXXX-XXXX-XXXX-XXXX\n")
+    winner = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n")
 else:
-    print(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n")
+    loser = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong! Better luck next time!\n")
+
