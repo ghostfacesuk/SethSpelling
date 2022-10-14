@@ -35,7 +35,7 @@ if wordOne == answerOne:
     print("\nCorrect, well done!")
     rightAnswers += 1
 else:
-    print(f'\nIncorrect! You put "{wordOne}", the answer is "{answerOne}"')
+    print(f'\nIncorrect! You put "{wordOne}", the answer is "{answerOne}".')
     wrongAnswers += 1
 
 # End of test
