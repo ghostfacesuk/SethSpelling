@@ -1,4 +1,6 @@
 SethSpelling.pyproj
+*.mp3
+/.vs
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
