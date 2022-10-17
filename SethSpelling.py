@@ -31,8 +31,10 @@ wrongAnswers = 0
 i = 0
 
 # put the selling answerList below!
-answerList = ["one","two","three","four","five","six","seven","eight","nine","ten"]
-wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth"]
+answerList = ["one","once","ask","friend","school","put","push","pull","full","house","our"]
+wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
+
+startSpell = input(f"\nPress Enter to start...\n")
 
 def play_1():
     clear_console()
@@ -56,21 +58,25 @@ def repeatWord():
 #### Questions ####
 def questions():
     global i, wordList, rightAnswers, wrongAnswers
-    while i < 10:
-        startSpell = input(f"\nPress any key for the {wordList[i]} word...\n")
-        if startSpell == str("exit"):
-            exit()
-        else:
-            play_1()
-            repeatWord()
+    while i < 11:
+        #startSpell = input(f"\nPress any key for the {wordList[i]} word...\n")
+        #if startSpell == str("exit"):
+        #    exit()
+        #else:
+        #    play_1()
+        #    repeatWord()
+        play_1()
         clear_console()
         wordGuess = input(f"Spell the {wordList[i]} word...\n")
         if wordGuess == answerList[i]:
-            print("\nCorrect, well done!")
+            input("\nCorrect, well done!")
             rightAnswers += 1
             i += 1
+        elif wordGuess == str(""):
+ #           play_1()
+            print("\nPlaying again...\n")      
         else:
-            print(f'\nIncorrect! You put "{wordGuess}", the answer is "{answerList[i]}".')
+            input(f'\nIncorrect! You put "{wordGuess}", the answer is "{answerList[i]}".')
             wrongAnswers += 1
             i += 1
 
@@ -82,5 +88,4 @@ questions()
 if wrongAnswers == 0:
     winner = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n")
 else:
-    loser = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong! Better luck next time!\n")
-
+    loser = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n \nBetter luck next time!\n")
