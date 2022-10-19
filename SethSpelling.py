@@ -44,7 +44,7 @@ answerList = ["one","once","ask","friend","school","put","push","pull","full","h
 wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
 numAns = len(answerList)
 
-startSpell = input(f"\nPress Enter to start...\n").lower()
+#startSpell = input(f"\nPress Enter to start...\n").lower()
 
 def makefiles():
     global i, answerList, numAns
@@ -56,12 +56,12 @@ def makefiles():
 # Checking if mp3 files exist...
 file_exists = os.path.exists(f'.\Audio\{answerList[0]}.mp3')
 if file_exists == True:
-    print("Audio files found. \nPress Enter to start...\n")
+    input("\nAudio files found. \n\nPress Enter to start...\n")
 else:
-    print("No audio files found.\nCreating audio files...")
+    print("\nNo audio files found. Creating audio files...")
     makefiles()
-    input("Audio files created! Press Enter to exit and restart the app...")
-    exit()
+    input("Audio files created! \n\nPress Enter to start...\n")
+    i = 0
 
 def play_1():
     clear_console()
