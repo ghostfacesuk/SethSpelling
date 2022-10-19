@@ -38,8 +38,9 @@ rightAnswers = 0
 wrongAnswers = 0
 i = 0
 
-# put the selling answerList below!
+# put the sellings in the answerList below!
 answerList = ["one","once","ask","friend","school","put","push","pull","full","house","our"]
+###############
 wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
 numAns = len(answerList)
 
@@ -52,9 +53,14 @@ def makefiles():
         tts.save(f'.\Audio\{answerList[i]}.mp3')
         i += 1
 
-if startSpell == "makefiles":
+# Checking if mp3 files exist...
+file_exists = os.path.exists(f'.\Audio\{answerList[0]}.mp3')
+if file_exists == True:
+    print("Audio files found. \nPress Enter to start...\n")
+else:
+    print("No audio files found.\nCreating audio files...")
     makefiles()
-    input("Audio files saved! Press Enter to exit...")
+    input("Audio files created! Press Enter to exit and restart the app...")
     exit()
 
 def play_1():
