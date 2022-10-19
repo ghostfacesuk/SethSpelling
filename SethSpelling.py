@@ -5,16 +5,24 @@ from os import environ
 environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
 
 import pygame  # it is important to import pygame after that
-
 # need pygame installed - pip install pygame
 import time
 from pygame import mixer
+
+from gtts import gTTS
 
 def clear_console():
     os.system('cls')
 
 pound = u'\u00A3'
 clear_console()
+
+import os.path
+directory_exists = os.path.isdir(r'.\Audio')
+# print(directory_exists) # checks if the Audio folder is there or not, if not tries to create it.
+if directory_exists == False:
+    os.mkdir('Audio')
+
 print("Seth's spelling test v1.0.0")
 
 print('''   _____      _   _     _        _____            _ _ _               _______        _   
@@ -33,31 +41,27 @@ i = 0
 # put the selling answerList below!
 answerList = ["one","once","ask","friend","school","put","push","pull","full","house","our"]
 wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
+numAns = len(answerList)
 
 startSpell = input(f"\nPress Enter to start...\n").lower()
 
+def makefiles():
+    global i, answerList, numAns
+    while i < numAns:
+        tts = gTTS(answerList[i])
+        tts.save(f'.\Audio\{answerList[i]}.mp3')
+        i += 1
+
 if startSpell == "makefiles":
-    f = open("makefiles.bat", "a") # make a bin file for mp3 files
-    f.write(":: https://pypi.org/project/gTTS/ \n")
-    f.write(f"gtts-cli '{answerList[0]}' --output C:\Audio\{answerList[0]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[1]}' --output C:\Audio\{answerList[1]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[2]}' --output C:\Audio\{answerList[2]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[3]}' --output C:\Audio\{answerList[3]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[4]}' --output C:\Audio\{answerList[4]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[5]}' --output C:\Audio\{answerList[5]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[6]}' --output C:\Audio\{answerList[6]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[7]}' --output C:\Audio\{answerList[7]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[8]}' --output C:\Audio\{answerList[8]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[9]}' --output C:\Audio\{answerList[9]}.mp3 \n")
-    f.write(f"gtts-cli '{answerList[10]}' --output C:\Audio\{answerList[10]}.mp3 \n")
-    input("makefiles.bat saved! Press Enter to exit...")
+    makefiles()
+    input("Audio files saved! Press Enter to exit...")
     exit()
 
 def play_1():
     clear_console()
     print(f"The {wordList[i]} word is...")
     mixer.init()
-    mixer.music.load(f"C:\Audio\{answerList[i]}.mp3")
+    mixer.music.load(f".\Audio\{answerList[i]}.mp3")
     mixer.music.play()
     while mixer.music.get_busy():  # wait for music to finish playing
         time.sleep(1)
@@ -75,7 +79,7 @@ def repeatWord():
 #### Questions ####
 def questions():
     global i, wordList, rightAnswers, wrongAnswers
-    while i < 11:
+    while i < numAns:
         #startSpell = input(f"\nPress any key for the {wordList[i]} word...\n")
         #if startSpell == str("exit"):
         #    exit()

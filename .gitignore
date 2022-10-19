@@ -1,7 +1,9 @@
+makefiles.bat
 SethSpelling.pyproj
 *.mp3
 /.vs
 /env1
+/Audio
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
