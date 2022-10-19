@@ -42,6 +42,7 @@ i = 0
 answerList = ["one","once","ask","friend","school","put","push","pull","full","house","our"]
 ###############
 wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
+wrongAnsList = ["WRONG ANSWERS...", "\n"]
 numAns = len(answerList)
 
 #startSpell = input(f"\nPress Enter to start...\n").lower()
@@ -84,14 +85,8 @@ def repeatWord():
 
 #### Questions ####
 def questions():
-    global i, wordList, rightAnswers, wrongAnswers
+    global i, wordList, rightAnswers, wrongAnswers, wrongAnsList
     while i < numAns:
-        #startSpell = input(f"\nPress any key for the {wordList[i]} word...\n")
-        #if startSpell == str("exit"):
-        #    exit()
-        #else:
-        #    play_1()
-        #    repeatWord()
         play_1()
         clear_console()
         wordGuess = input(f"Spell the {wordList[i]} word...\n").lower()
@@ -104,15 +99,23 @@ def questions():
             print("\nPlaying again...\n")      
         else:
             input(f'\nIncorrect! You put "{wordGuess}", the answer is "{answerList[i]}".')
+            wrongAnsList.append(wordGuess + " " + answerList[i] + "\n")
             wrongAnswers += 1
             i += 1
 
 questions()
-#### Questions ####
-
 
 # End of test
 if wrongAnswers == 0:
-    winner = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n")
+    clear_console()
+    f = open("PASSED.txt", "a") # output a text file for results
+    f.write(f"PASSED! {answerList}\n")
+    winner = input(f"You got {rightAnswers} right and {wrongAnswers} wrong!\n")
 else:
-    loser = input(f"\nYou got {rightAnswers} right and {wrongAnswers} wrong!\n \nBetter luck next time!\n")
+    clear_console()
+    f = open("ATTEMPTS.txt", "a") # output a text file for results
+    f.write(f"ATTEMPTS! {wrongAnsList}\n")
+    print(f"You got {rightAnswers} right and {wrongAnswers} wrong!\n")
+    print(*wrongAnsList)
+    loser = input("\nBetter luck next time!\n")
+    
