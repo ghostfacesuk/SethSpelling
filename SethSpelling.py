@@ -34,7 +34,24 @@ i = 0
 answerList = ["one","once","ask","friend","school","put","push","pull","full","house","our"]
 wordList = ["first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh"]
 
-startSpell = input(f"\nPress Enter to start...\n")
+startSpell = input(f"\nPress Enter to start...\n").lower()
+
+if startSpell == "makefiles":
+    f = open("makefiles.bat", "a") # make a bin file for mp3 files
+    f.write(":: https://pypi.org/project/gTTS/ \n")
+    f.write(f"gtts-cli '{answerList[0]}' --output C:\Audio\{answerList[0]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[1]}' --output C:\Audio\{answerList[1]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[2]}' --output C:\Audio\{answerList[2]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[3]}' --output C:\Audio\{answerList[3]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[4]}' --output C:\Audio\{answerList[4]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[5]}' --output C:\Audio\{answerList[5]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[6]}' --output C:\Audio\{answerList[6]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[7]}' --output C:\Audio\{answerList[7]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[8]}' --output C:\Audio\{answerList[8]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[9]}' --output C:\Audio\{answerList[9]}.mp3 \n")
+    f.write(f"gtts-cli '{answerList[10]}' --output C:\Audio\{answerList[10]}.mp3 \n")
+    input("makefiles.bat saved! Press Enter to exit...")
+    exit()
 
 def play_1():
     clear_console()
@@ -48,7 +65,7 @@ def play_1():
 def repeatWord():
     repNum = 1
     while repNum >= 1:
-        hearAgain = input("\nWould you like to hear it again?\n")
+        hearAgain = input("\nWould you like to hear it again?\n").lower()
         if hearAgain == str("yes"):
             play_1()
         else:
@@ -67,7 +84,7 @@ def questions():
         #    repeatWord()
         play_1()
         clear_console()
-        wordGuess = input(f"Spell the {wordList[i]} word...\n")
+        wordGuess = input(f"Spell the {wordList[i]} word...\n").lower()
         if wordGuess == answerList[i]:
             input("\nCorrect, well done!")
             rightAnswers += 1
