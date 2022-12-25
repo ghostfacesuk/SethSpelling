@@ -15,16 +15,17 @@ def clear_console():
     os.system('clear')
 
 pound = u'\u00A3'
-clear_console()
 
 import os.path
-directory_exists = os.path.exists('.\Audio')
-# directory_exists = os.listdir(r'.\Audio')
+# directory_exists = os.path.exists('.\Audio')
+directory_exists = os.listdir(r'.\Audio')
 # print(directory_exists) # checks if the Audio folder is there or not, if not tries to create it.
 if directory_exists == False:
     os.mkdir('Audio')
 
-print("Seth's spelling test v1.0.0")
+clear_console()
+
+print("Seth's spelling test v1.1.0 Linux version")
 
 print('''   _____      _   _     _        _____            _ _ _               _______        _   
   / ____|    | | | |   ( )      / ____|          | | (_)             |__   __|      | |  
