@@ -23,7 +23,7 @@ import os.path
 #if directory_exists == False:
 #    os.mkdir('Audio')
 
-clear_console()
+# clear_console()
 
 print("Seth's spelling test v1.1.0 Linux version")
 
