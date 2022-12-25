@@ -17,11 +17,11 @@ def clear_console():
 pound = u'\u00A3'
 
 import os.path
-# directory_exists = os.path.exists('.\Audio')
-directory_exists = os.listdir(r'.\Audio')
-# print(directory_exists) # checks if the Audio folder is there or not, if not tries to create it.
-if directory_exists == False:
-    os.mkdir('Audio')
+## directory_exists = os.path.exists('.\Audio')
+#directory_exists = os.listdir(r'.\Audio')
+## print(directory_exists) # checks if the Audio folder is there or not, if not tries to create it.
+#if directory_exists == False:
+#    os.mkdir('Audio')
 
 clear_console()
 
