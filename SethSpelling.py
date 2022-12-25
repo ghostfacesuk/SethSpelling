@@ -12,13 +12,14 @@ from pygame import mixer
 from gtts import gTTS
 
 def clear_console():
-    os.system('cls')
+    os.system('clear')
 
 pound = u'\u00A3'
 clear_console()
 
 import os.path
-directory_exists = os.path.isdir(r'.\Audio')
+directory_exists = os.path.exists('.\Audio')
+# directory_exists = os.listdir(r'.\Audio')
 # print(directory_exists) # checks if the Audio folder is there or not, if not tries to create it.
 if directory_exists == False:
     os.mkdir('Audio')
